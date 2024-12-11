@@ -26,8 +26,7 @@ public class Worker : BackgroundService
             }
 
             try
-            {
-               
+            {               
                 var pendingEmails = await _emailRepository.GetPendingEmailsAsync();
 
                 foreach (var emailData in pendingEmails)
@@ -45,7 +44,6 @@ public class Worker : BackgroundService
             {
                 _logger.LogError(ex, "Error processing emails at: {time}", DateTimeOffset.Now);
             }
-
             
             await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
         }
